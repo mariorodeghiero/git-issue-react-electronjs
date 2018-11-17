@@ -1,0 +1,18 @@
+{
+  "favorite": [
+    {
+      "id": 0,
+      "title": "vue-theme-vscode",
+      "url": "https://api.github.com/repos/mariorodeghiero/vue-theme-vscode/issues?per_page=100",
+      "selected": false,
+      "key": "favorite"
+    },
+    {
+      "id": 1,
+      "title": "frontendbr-forum",
+      "url": "https://api.github.com/repos/frontendbr/forum/issues?per_page=100",
+      "selected": false,
+      "key": "favorite"
+    }
+  ]
+}
