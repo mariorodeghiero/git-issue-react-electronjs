@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Exclamation from '../exclamation.svg';
+import CommentIcon from '../comment.svg';
 const ReactMarkdown = require('react-markdown')
 
 import styled from 'styled-components';
@@ -37,9 +38,9 @@ const Title = styled.span `
   float: left;
 `
 const Icon = styled.img `
- display: ${props => props.status == true
+ /* display: ${props => props.status == true
   ? "none"
-  : "block"};
+  : "block"}; */
   margin-top: 10px;
   width: 20px;
   height: 20px;
@@ -57,7 +58,10 @@ const Text = styled.div `
     max-width: 100%;
     max-height: 100%;
   }
-
+  p {
+    max-width: 100%;
+    overflow: auto;
+  }
 `
 const Line = styled.div `
   height: 30px;
@@ -74,17 +78,16 @@ class ReadIssue extends React.Component {
         {this.props.isComment && <Line/>}
         <Card>
           <Header>
-            <Icon alt="icon" src={Exclamation} status={this.props.isComment}/>
+            <Icon alt="icon" src={this.props.isComment == true ? CommentIcon : Exclamation}  status={this.props.isComment}/>
             <Title>{this.props.title}</Title>
             <Avatar src={this.props.avatar} alt="Avatar"/>
             <User>@{this.props.user}</User>
           </Header>
           <Text>
-            <ReactMarkdown source={this.props.text}/>
+            <ReactMarkdown className="container-markdown"source={this.props.text}/>
           </Text>
         </Card>
       </div>
-
     );
   }
 }

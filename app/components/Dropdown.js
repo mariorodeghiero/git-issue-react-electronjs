@@ -10,27 +10,35 @@ const db = low(adapter)
 
 const HeaderSelect = styled.div `
   position: fixed;
-  height: 35px;
-  width: 250px;
+  width: 350px;
 `
 
 const SelectRepo = styled.p `
+  background: whitesmoke;
   font-size: 0.8rem;
-  padding: 10px;
+  width: 50%;
+  padding-left: 10px;
   margin: 0;
   color: #000;
   cursor: pointer;
 `
 
 const ListRepo = styled.ul `
-  text-align: left;
   margin: 0;
-  padding-right: 20px;
+  padding-top : 10px;
   padding-bottom: 10px;
+  border: 1px solid #dfdfdf;
+  background-color: #ffffff;
   li{
+    margin-left: -20px;
+    line-height: 1.8em;
     font-size: 0.8rem;
+    cursor: default;
     text-align: left;
     list-style: none;
+    :hover{
+      background-color: #F6F8FA;
+    }
   }
 `
 
@@ -41,6 +49,13 @@ const Icon = styled.i `
 
 const FilterClosed = styled.form `
   float: right;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  background: whitesmoke;
+  width: 45%;
+  border: 1px solid #dfdfdf;
 `
 
 class Dropdown extends Component {
@@ -77,6 +92,12 @@ class Dropdown extends Component {
     const {listOpen, headerTitle} = this.state;
     return (
       <HeaderSelect>
+        <FilterClosed>
+            <label>
+              <input name="isGoing" type="checkbox"/>
+              closed
+            </label>
+          </FilterClosed>
         <div className="dd-header">
           <SelectRepo className="dd-header-title" onClick={this.toggleList}>
             {headerTitle}
@@ -86,12 +107,6 @@ class Dropdown extends Component {
           </SelectRepo>
         </div>
         {listOpen && <ListRepo className="dd-list">
-          <FilterClosed>
-            <label>
-              <input name="isGoing" type="checkbox"/>
-              closed
-            </label>
-          </FilterClosed>
           {list.map((item) => (
             <li
               className="dd-list-item"

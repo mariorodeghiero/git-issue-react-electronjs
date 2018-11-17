@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div `
   max-height: 100vh;
-  background: #001f3f;
+  background: #24292D;
   height: 100vh;
   padding: 10px;
   color: #FFF;

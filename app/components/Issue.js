@@ -6,10 +6,10 @@ const Card = styled.div `
     padding-bottom: 20px;
     border-bottom: 1px solid #e2e5ec;
     cursor: pointer;
-    :hover{
+    :hover {
       background-color: #F6F8FA;
-      /* opacity: 0.7; */
     }
+}
 `
 const Title = styled.h1 `
     font-size: 0.7rem;
