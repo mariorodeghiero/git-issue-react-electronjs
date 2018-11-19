@@ -3,31 +3,52 @@
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,100');
 @import '~@fortawesome/fontawesome-free/css/all.css';
 body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+span,
+button,
+form {
+    font-family: 'Roboto';
+    font-weight: 100;
+    letter-spacing: 0.025em;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+hr {
+    opacity: 0.4;
+}
+
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 200px 350px minmax(600px, auto);
-    /* grid-column-gap: 10px; */
+    grid-template-columns: 260px 320px minmax(550px, auto);
 }
 
 .container-issue {
     max-height: 100vh;
     overflow: scroll;
     border-right: 1px solid #e2e5ec;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    opacity: 0.1;
 }
 
 .container-issue::-webkit-scrollbar {
@@ -39,9 +60,7 @@ code {
 }
 
 .show-issue {
-    margin: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 50px;
     overflow: scroll;
     max-height: 90vh;
 }

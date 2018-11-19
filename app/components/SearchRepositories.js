@@ -19,14 +19,14 @@ const SearchInput = styled.input`
   border: 0 none;
   outline: 0;
   border-radius: 4px;
-  /* float: right; */
 `
 const Repositories = styled.li`
   list-style: none;
-  padding-bottom: 5px;
+  line-height: 1.6em;
+  text-align: left;
+  color: #000;
   a{
     text-decoration: none;
-    color: #FFF;
     font-size: 0.8rem;
     :hover{
       cursor: pointer;

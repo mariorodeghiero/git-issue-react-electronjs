@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import routes from '../constants/routes';
+import Icon from '../logo.png'
 import Issue from './Issue'
 import Pagination from './Pagination'
 import SearchIssue from './SearchIssue'
@@ -84,7 +85,7 @@ export default class Home extends Component {
         <Sidebar newIssues={this.newIssues}/>
         <div className="container-issue">
           <Dropdown
-            title="Select repository"
+            title="My Library"
             list={this.state.data}
             fetchRepo={this.fetchRepo}/>
           <div className="issues">
@@ -101,6 +102,7 @@ export default class Home extends Component {
 }</div>
         </div>
         <div className="show-issue">
+          {!this.state.isComments && <img className="logo" src={Icon} alt="logo"/>}
           {this.state.isComments && <ReadIssue
             user={this.state.userIssue}
             avatar={this.state.avatarIssue}

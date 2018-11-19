@@ -38,9 +38,6 @@ const Title = styled.span `
   float: left;
 `
 const Icon = styled.img `
- /* display: ${props => props.status == true
-  ? "none"
-  : "block"}; */
   margin-top: 10px;
   width: 20px;
   height: 20px;
@@ -78,7 +75,7 @@ class ReadIssue extends React.Component {
         {this.props.isComment && <Line/>}
         <Card>
           <Header>
-            <Icon alt="icon" src={this.props.isComment == true ? CommentIcon : Exclamation}  status={this.props.isComment}/>
+            <Icon alt="icon" src={this.props.isComment == true ? CommentIcon : Exclamation}/>
             <Title>{this.props.title}</Title>
             <Avatar src={this.props.avatar} alt="Avatar"/>
             <User>@{this.props.user}</User>

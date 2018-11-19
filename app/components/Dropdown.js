@@ -10,7 +10,7 @@ const db = low(adapter)
 
 const HeaderSelect = styled.div `
   position: fixed;
-  width: 350px;
+  width: 320px;
 `
 
 const SelectRepo = styled.p `
@@ -43,8 +43,9 @@ const ListRepo = styled.ul `
 `
 
 const Icon = styled.i `
-  position: relative;
+  margin:10px;
   left: 10px;
+  right: 10px;
 `
 
 const FilterClosed = styled.form `
@@ -100,10 +101,10 @@ class Dropdown extends Component {
           </FilterClosed>
         <div className="dd-header">
           <SelectRepo className="dd-header-title" onClick={this.toggleList}>
-            {headerTitle}
             {listOpen
-              ? <Icon className="fas fa-angle-up 2x"/>
-              : <Icon className="fas fa-angle-down 2x"/>}
+              ? <Icon className="fas fa-angle-down 2x"/>
+              : <Icon className="fas fa-angle-right 2x"/>}
+              {headerTitle}
           </SelectRepo>
         </div>
         {listOpen && <ListRepo className="dd-list">
