@@ -20,10 +20,11 @@ const Header = styled.header `
   grid-template-columns: 80% 20%;
 `
 const User = styled.span `
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   float: right;
   clear: both;
   margin-top: 3px;
+  text-align: right;
 `
 const Avatar = styled.img `
   width: 30px;
@@ -35,9 +36,9 @@ const Avatar = styled.img `
 `
 
 const Title = styled.h1 `
-  max-width: 80%;
   font-size: 0.8rem;
   font-weight: bold;
+  text-align: left;
 `
 const Icon = styled.img `
   margin: 10px;
@@ -53,6 +54,7 @@ const Text = styled.div `
   line-height: 1.6em;
   width: inherit;
   height: inherit;
+  text-align: left;
   img {
     max-width: 100%;
     max-height: 100%;

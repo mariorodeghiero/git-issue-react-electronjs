@@ -49,20 +49,21 @@ hr {
     width: 80px;
     height: 80px;
     opacity: 0.1;
+    position: absolute;
+    top: 40%;
 }
 
 .container-issue::-webkit-scrollbar {
     display: none;
 }
 
-.issues {
-    margin-top: 50px;
-}
+.issues {}
 
 .show-issue {
     padding: 50px;
     overflow: scroll;
     max-height: 90vh;
+    text-align: center;
 }
 
 .show-issue::-webkit-scrollbar {

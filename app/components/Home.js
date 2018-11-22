@@ -119,20 +119,3 @@ export default class Home extends Component {
     );
   }
 }
-
-{/* {console.log("Dado :", this.state.data)} */
-}
-{/* <Link to={routes.COUNTER}>to Counter</Link> */
-}
-{/* <SearchIssue/>  */
-}
-{/* <button onClick={this.newUrl}>send</button> */
-}
-
-{/* <ReadMarkdown
-            key={key}
-            text={this.state.commentsData[key].body}
-            user={this.state.commentsData[key].user.login}
-            avatar={this.state.commentsData[key].user.avatar_url}
-            /> */
-}

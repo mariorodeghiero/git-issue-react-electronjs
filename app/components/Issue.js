@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 const Card = styled.div `
     padding: 10px;
-    padding-bottom: 20px;
     border-bottom: 1px solid #e2e5ec;
+    display: grid;
+    grid-template-columns: 75% 25%;
     cursor: pointer;
     :hover {
       background-color: #F6F8FA;
@@ -19,11 +20,12 @@ const Title = styled.h1 `
 const User = styled.div `
     float: right;
     text-align: right;
-    clear:both;
 `
 const Avatar = styled.img `
     height: 30px;
     width: 30px;
+    margin-top: 50px;
+    float: right;
     border-radius: 4px;
 `
 const Name = styled.p `
@@ -69,14 +71,18 @@ class Issue extends Component {
       <a
         onClick={() => this.fetchCommentsUrl(this.props.issueUrl, this.props.title, this.props.text, this.props.avatar, this.props.user)}>
         <Card >
+          <div>
           <Title>#{this.props.number} {this.props.title}</Title>
-          <User>
-            <Avatar className="avatar" src={this.props.avatar} alt="Avatar"/>
-            <Name>@{this.props.user}</Name>
-          </User>
-          <Text>{this.props.text}</Text>
-          <p >{this.props.label}</p>
-          <Status status={this.props.status}>{this.props.status}</Status>
+            <Text>{this.props.text}</Text>
+            <p>{this.props.label}</p>
+            <Status status={this.props.status}>{this.props.status}</Status>
+          </div>
+          <div>
+            <User>
+              <Avatar className="avatar" src={this.props.avatar} alt="Avatar"/>
+              <Name>@{this.props.user}</Name>
+            </User>
+          </div>
         </Card>
       </a>
     )
