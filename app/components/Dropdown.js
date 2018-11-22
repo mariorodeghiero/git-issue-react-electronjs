@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import onClickOutside from "react-onclickoutside";
+import Search from "./SearchIssue";
 import styled from 'styled-components';
+import SearchRepository from './SearchRepositories';
 
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
@@ -9,44 +11,51 @@ const adapter = new FileSync('./db.json')
 const db = low(adapter)
 
 const HeaderSelect = styled.div `
-  position: fixed;
-  width: 320px;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
 `
 
 const SelectRepo = styled.p `
-  background: whitesmoke;
   font-size: 0.8rem;
-  width: 50%;
-  padding-left: 10px;
   margin: 0;
-  color: #000;
   cursor: pointer;
 `
 
 const ListRepo = styled.ul `
   margin: 0;
-  padding-top : 10px;
+  padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid #dfdfdf;
-  background-color: #ffffff;
+  color: #FFFFFF;
   li{
     margin-left: -20px;
-    line-height: 1.8em;
-    font-size: 0.8rem;
+    line-height: 2em;
+    font-size: 0.9rem;
+    font-weight: 300;
     cursor: default;
     text-align: left;
     list-style: none;
+    opacity: 0.8;
     :hover{
-      background-color: #F6F8FA;
+      opacity: 1;
     }
   }
 `
 
-const Icon = styled.i `
-  margin:10px;
-  left: 10px;
-  right: 10px;
+const Label = styled.label `
+  margin-left: 35px;
+  position: fixed;
+  margin-top: 2px;
+  font-size: 0.9rem;
+  font-weight: 300;
 `
+const Option = styled.img `
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  padding-left: 10px;
+`
+
 
 const FilterClosed = styled.form `
   float: right;
@@ -54,7 +63,6 @@ const FilterClosed = styled.form `
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 8px;
-  background: whitesmoke;
   width: 45%;
   border: 1px solid #dfdfdf;
 `
@@ -65,7 +73,10 @@ class Dropdown extends Component {
     this.state = {
       listOpen: false,
       filterClosed: false,
-      headerTitle: this.props.title
+      icon: this.props.icon,
+      title: this.props.title,
+      addBox: this.props.addBox,
+      library: this.props.library
     }
   }
 
@@ -90,30 +101,32 @@ class Dropdown extends Component {
     const list = db
       .get('favorite')
       .value();
-    const {listOpen, headerTitle} = this.state;
+    const {listOpen, icon, title, addBox, library} = this.state;
     return (
       <HeaderSelect>
-        <FilterClosed>
+        {/* <FilterClosed>
             <label>
               <input name="isGoing" type="checkbox"/>
               closed
+              closed
             </label>
-          </FilterClosed>
+          </FilterClosed> */}
         <div className="dd-header">
           <SelectRepo className="dd-header-title" onClick={this.toggleList}>
             {listOpen
-              ? <Icon className="fas fa-angle-down 2x"/>
-              : <Icon className="fas fa-angle-right 2x"/>}
-              {headerTitle}
+              ? <i className="fas fa-angle-down 2x"/>
+              : <i className="fas fa-angle-right 2x"/>}
+              <Option src={icon}/><Label>{title}</Label>
           </SelectRepo>
         </div>
         {listOpen && <ListRepo className="dd-list">
-          {list.map((item) => (
+          {library && list.map((item) => (
             <li
               className="dd-list-item"
               key={item.id}
               onClick={() => this.selectItem(item.title, item.url, item.id, item.key)}>{item.title} {item.selected && <i className="fas fa-check"/>}</li>
           ))}
+          {addBox && <SearchRepository/>}
         </ListRepo>}
       </HeaderSelect>
     )

@@ -72,10 +72,3 @@ hr {
 .container-markdown pre {
     overflow: auto;
 }
-
-.dd-header {
-    line-height: 38px;
-    border: 1px solid #dfdfdf;
-    border-radius: 3px;
-    background-color: #fff;
-}

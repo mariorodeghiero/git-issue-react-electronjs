@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import SearchRepository from './SearchRepositories';
 import Dropdown from './Dropdown';
 import Issue from './Issue';
-import Icon from '../logo.png';
+import LogoIcon from '../logo.png';
+import Favorite from '../favorite.svg';
+import AddInbox from '../add-box.svg';
 import styled from 'styled-components';
 
 const Wrapper = styled.div `
@@ -25,6 +26,17 @@ const Logo = styled.img `
   height: 50px;
   padding-top: 30px;
   margin: 0 auto;
+`
+const Icon = styled.img `
+  width: 25px;
+  height: 25px;
+  margin-top: 30px;
+  padding: 10px;
+  opacity: 0.7;
+  :hover{
+    opacity: 1;
+    cursor: pointer;
+  }
 `
 const Nav = styled.nav `
   transition: all 0.3s;
@@ -57,10 +69,11 @@ class Sidebar extends Component {
   render() {
     return (
       <Wrapper>
-        <Logo src={Icon} alt="logo"/>
+        <Logo src={LogoIcon} alt="logo"/>
         <Title>GitHub Issue</Title>
         <hr/>
-        <SearchRepository/>
+         <Dropdown icon={Favorite} title={"Library"} library={true} fetchRepo={this.props.fetchRepo} />
+         <Dropdown icon={AddInbox} title={"Add Library"} addBox={true} />
       </Wrapper>
     );
   }

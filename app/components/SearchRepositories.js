@@ -16,30 +16,48 @@ const SearchButton = styled.button`
 
 const SearchInput = styled.input`
   margin-top: 20px;
-  border: 0 none;
+  margin-bottom: 20px;
   outline: 0;
-  border-radius: 4px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 5px;
+  color: #ffffff;
+  width: 100%;
+  margin-left: -30px;
+  text-align: center;
+  font-size: 0.8rem;
 `
 const Repositories = styled.li`
   list-style: none;
   line-height: 1.6em;
   text-align: left;
-  color: #000;
   a{
     text-decoration: none;
     font-size: 0.8rem;
+    color: #ffffff;
     :hover{
       cursor: pointer;
     }
   }
 `
 const ContainerRepository = styled.ul`
-  max-height: 85vh;
-  overflow: scroll;
+  max-height: 55vh;
+  width: 100%;
+  overflow-y: scroll;
   float:left;
-  margin-left: -30px;
+  margin-left: -50px;
   ::-webkit-scrollbar {
-    display: none;
+    width: 0.2em;
+  }
+  ::-webkit-scrollbar-button {
+    background: #ccc
+  }
+  ::-webkit-scrollbar-track-piece {
+    background: #888
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #eee
 }
 `
 

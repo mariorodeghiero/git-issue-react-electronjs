@@ -9,36 +9,38 @@ const Card = styled.div `
   border: 1px solid #d1d5da;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  color: #586069;
+  width: 90%;
 `
 const Header = styled.header `
   background-color: #F6F8FA;
   border-bottom: 1px solid #d1d5da;
-  height: 45px;
+  height: 50px;
   padding: 10px;
+  display: grid;
+  grid-template-columns: 80% 20%;
 `
-const User = styled.p `
+const User = styled.span `
   font-size: 0.7rem;
   float: right;
-  clear:both;
+  clear: both;
   margin-top: 3px;
 `
 const Avatar = styled.img `
   width: 30px;
   height: 30px;
   border-radius: 3px;
+  clear: both;
   float: right;
+  margin-top: 5px;
 `
 
-const Title = styled.span `
-  margin-top: 10px;
-  margin-left: 10px;
-  font-size: 1rem;
+const Title = styled.h1 `
+  max-width: 80%;
+  font-size: 0.8rem;
   font-weight: bold;
-  float: left;
 `
 const Icon = styled.img `
-  margin-top: 10px;
+  margin: 10px;
   width: 20px;
   height: 20px;
   float: left;
@@ -58,6 +60,8 @@ const Text = styled.div `
   p {
     max-width: 100%;
     overflow: auto;
+    font-weight: 300;
+
   }
 `
 const Line = styled.div `
@@ -75,10 +79,14 @@ class ReadIssue extends React.Component {
         {this.props.isComment && <Line/>}
         <Card>
           <Header>
-            <Icon alt="icon" src={this.props.isComment == true ? CommentIcon : Exclamation}/>
-            <Title>{this.props.title}</Title>
-            <Avatar src={this.props.avatar} alt="Avatar"/>
-            <User>@{this.props.user}</User>
+            <div>
+              <Icon alt="icon" src={this.props.isComment == true ? CommentIcon : Exclamation}/>
+              <Title>{this.props.title}</Title>
+            </div>
+            <div>
+              <Avatar src={this.props.avatar} alt="Avatar"/>
+              <User>@{this.props.user}</User>
+            </div>
           </Header>
           <Text>
             <ReactMarkdown className="container-markdown"source={this.props.text}/>

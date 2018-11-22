@@ -14,6 +14,7 @@ const Card = styled.div `
 const Title = styled.h1 `
     font-size: 0.7rem;
     text-align: left;
+    font-weight: 400;
 `
 const User = styled.div `
     float: right;
@@ -42,9 +43,9 @@ const Status = styled.label`
     padding: 3px 5px;
 `
 const Text = styled.p `
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     font-weight: 300;
-    color: #999;
+    color: #517393;
     max-width: 50ch;
     overflow: hidden;
     text-overflow: ellipsis;

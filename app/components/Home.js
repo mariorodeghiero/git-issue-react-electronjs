@@ -11,6 +11,8 @@ import Dropdown from './Dropdown';
 import ReadIssue from './ReadIssue';
 import ReadMarkdown from './ReadMarkdown';
 import styles from './Home.css';
+import Favorite from '../favorite.svg';
+
 
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
@@ -82,12 +84,8 @@ export default class Home extends Component {
 
     return (
       <div className="container">
-        <Sidebar newIssues={this.newIssues}/>
+        <Sidebar newIssues={this.newIssues} fetchRepo={this.fetchRepo}/>
         <div className="container-issue">
-          <Dropdown
-            title="My Library"
-            list={this.state.data}
-            fetchRepo={this.fetchRepo}/>
           <div className="issues">
             {issues.map(key => <Issue
               key={key}
