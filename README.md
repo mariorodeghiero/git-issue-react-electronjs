@@ -1,9 +1,9 @@
 <div align="center">
 
-# GitHub Issue
+<img src="https://raw.githubusercontent.com/mariorodeghiero/git-issue-react-electronjs/master/resources/icon.ico" width="80px" height="80px" /> <h1>GitHub Issue </h1>
 
 <p align="center">
-    A Desktop Apps built with  <a href="http://electron.atom.io/">Electron</a> and <a href="https://facebook.github.io/react/">React</a> to be Cross-Platform to manage GitHub issues.
+    A Desktop App built with  <a href="http://electron.atom.io/">Electron</a> and <a href="https://facebook.github.io/react/">React</a> to be Cross-Platform to manage GitHub issues.
 </p>
 
 </div>
