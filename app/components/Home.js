@@ -56,7 +56,7 @@ export default class Home extends Component {
   }
 
   fetchRepo = (url, id, key) => {
-    fetch(url)
+    fetch(url + "/issues?per_page=100")
       .then(response => response.json())
       .then(data => {
         this.setState({data})

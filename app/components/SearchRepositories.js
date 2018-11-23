@@ -61,6 +61,12 @@ const ContainerRepository = styled.ul`
 }
 `
 
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+
+const adapter = new FileSync('./db.json')
+const db = low(adapter)
+
 
 class SearchRepository extends React.Component {
 
@@ -72,6 +78,21 @@ class SearchRepository extends React.Component {
     this.state = {
       repositories: []
     };
+  }
+
+
+  addLibrary(id, title, url){
+     db
+      .get('favorite')
+      .push(
+        {
+          id: id,
+          title: title,
+          url: url,
+          select: false,
+          key: "favorite"
+        })
+      .write()
   }
 
   render() {
@@ -93,8 +114,9 @@ class SearchRepository extends React.Component {
             .state
             .repositories
             .map((item, index) => (
-              <Repositories>
-                <a key={index} type="button"><i className="fa fa-plus fa-sm"/> {item.name}</a>
+              <Repositories key={index}>
+                <a key={index}  onClick={() => this.addLibrary(item.id, item.name, item.url)} type="button" title={item.full_name + " ⭐️" + item.stargazers_count + " ⬇️" + item.forks }><i className="fa fa-plus fa-sm"/> {item.name}</a>
+                {console.log("test serch: ", item)}
               </Repositories>
             ))}
           </ContainerRepository>

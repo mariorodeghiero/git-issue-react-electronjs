@@ -4,12 +4,6 @@ import Search from "./SearchIssue";
 import styled from 'styled-components';
 import SearchRepository from './SearchRepositories';
 
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
-
-const adapter = new FileSync('./db.json')
-const db = low(adapter)
-
 const HeaderSelect = styled.div `
   width: 100%;
   padding: 10px;
@@ -98,19 +92,17 @@ class Dropdown extends Component {
   }
 
   render() {
+    const low = require('lowdb')
+    const FileSync = require('lowdb/adapters/FileSync')
+    const adapter = new FileSync('./db.json')
+    const db = low(adapter)
     const list = db
       .get('favorite')
       .value();
+
     const {listOpen, icon, title, addBox, library} = this.state;
     return (
       <HeaderSelect>
-        {/* <FilterClosed>
-            <label>
-              <input name="isGoing" type="checkbox"/>
-              closed
-              closed
-            </label>
-          </FilterClosed> */}
         <div className="dd-header">
           <SelectRepo className="dd-header-title" onClick={this.toggleList}>
             {listOpen
