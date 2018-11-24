@@ -21,6 +21,11 @@ const ListRepo = styled.ul `
   padding-top: 10px;
   padding-bottom: 10px;
   color: #FFFFFF;
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
+  animation: fadein 2s;
   li{
     margin-left: -20px;
     line-height: 2em;
@@ -33,6 +38,10 @@ const ListRepo = styled.ul `
     :hover{
       opacity: 1;
     }
+  }
+  @keyframes fadein {
+    from{opacity: 0.3;}
+    to{opacity: 1;}
   }
 `
 
@@ -49,7 +58,6 @@ const Option = styled.img `
   position: absolute;
   padding-left: 10px;
 `
-
 
 const FilterClosed = styled.form `
   float: right;

@@ -86,7 +86,7 @@ export default class Home extends Component {
       <div className="container">
         <Sidebar newIssues={this.newIssues} fetchRepo={this.fetchRepo}/>
         <div className="container-issue">
-          <div className="issues">
+          <div>
             {issues.map(key => <Issue
               key={key}
               number={this.state.data[key].number}

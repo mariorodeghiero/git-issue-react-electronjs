@@ -7,7 +7,6 @@ const SearchButton = styled.button`
   border: none;
   color: #fff;
   outline: 0;
-  /* float: right; */
   margin-top: 20px;
   :hover{
     cursor: pointer;
@@ -36,8 +35,12 @@ const Repositories = styled.li`
     text-decoration: none;
     font-size: 0.8rem;
     color: #ffffff;
-    :hover{
+    i{
       cursor: pointer;
+      opacity: 0.6
+      :hover {
+        opacity: 1;
+      }
     }
   }
 `

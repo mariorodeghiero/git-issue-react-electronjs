@@ -14,7 +14,6 @@ const Card = styled.div `
 const Header = styled.header `
   background-color: #F6F8FA;
   border-bottom: 1px solid #d1d5da;
-  height: 50px;
   padding: 10px;
   display: grid;
   grid-template-columns: 80% 20%;
@@ -27,21 +26,22 @@ const User = styled.span `
   text-align: right;
 `
 const Avatar = styled.img `
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 3px;
   clear: both;
   float: right;
-  margin-top: 5px;
 `
 
 const Title = styled.h1 `
-  font-size: 0.8rem;
-  font-weight: bold;
+  font-size: 0.7rem;
+  font-weight: 400;
   text-align: left;
 `
 const Icon = styled.img `
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
   width: 20px;
   height: 20px;
   float: left;

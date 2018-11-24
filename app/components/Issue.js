@@ -5,7 +5,7 @@ const Card = styled.div `
     padding: 10px;
     border-bottom: 1px solid #e2e5ec;
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 80% 20%;
     cursor: pointer;
     :hover {
       background-color: #F6F8FA;
@@ -22,17 +22,18 @@ const User = styled.div `
     text-align: right;
 `
 const Avatar = styled.img `
-    height: 30px;
-    width: 30px;
-    margin-top: 50px;
+    height: 25px;
+    width: 25px;
     float: right;
+    padding-bottom: 3px;
     border-radius: 4px;
+    margin-top: 10px;
 `
 const Name = styled.p `
-    font-size: 0.5rem;
+    font-size: 0.4rem;
 `
 const Status = styled.label`
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     background-color: ${props => props.status == 'open'
   ? "#2ECC40"
   : "#FF4136"};
@@ -41,14 +42,14 @@ const Status = styled.label`
     : "#FFF"};
     border-radius: 2px;
     box-shadow: inset 0 -1px 0 rgba(27,31,35,.12);
-    font-weight: 400;
+    font-weight: 300;
     padding: 3px 5px;
 `
 const Text = styled.p `
     font-size: 0.6rem;
     font-weight: 300;
     color: #517393;
-    max-width: 50ch;
+    /* max-width: 50ch; */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -64,6 +65,7 @@ class Issue extends Component {
     this
       .props
       .renderComments(url, title, text, avatar, user)
+      console.log(url)
   }
   render() {
 
