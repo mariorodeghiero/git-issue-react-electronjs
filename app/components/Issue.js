@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import CommentIcon from '../comment.svg';
 import styled from 'styled-components';
+
 
 const Card = styled.div `
     padding: 10px;
@@ -54,6 +56,18 @@ const Text = styled.p `
     text-overflow: ellipsis;
     white-space: nowrap;
 `
+const Comments = styled.img `
+    height: 15px;
+    width: 15px;
+    margin-top: 20px;
+    margin-right: 5px;
+`
+const NumberOfComments = styled.span `
+    font-size: 0.6rem;
+    color: #000000;
+    text-align: right;
+`
+
 
 class Issue extends Component {
   constructor(props) {
@@ -83,6 +97,8 @@ class Issue extends Component {
             <User>
               <Avatar className="avatar" src={this.props.avatar} alt="Avatar"/>
               <Name>@{this.props.user}</Name>
+              <Comments src={CommentIcon} alt="comment icon"/>
+              <NumberOfComments>{this.props.comments}</NumberOfComments>
             </User>
           </div>
         </Card>

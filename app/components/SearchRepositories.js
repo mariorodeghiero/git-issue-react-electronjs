@@ -5,7 +5,7 @@ let searchTerm;
 const SearchButton = styled.button`
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: #c4c4c4;
   outline: 0;
   margin-top: 20px;
   :hover{
@@ -19,25 +19,27 @@ const SearchInput = styled.input`
   outline: 0;
   background: transparent;
   border: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #cccccc;
   padding: 5px;
-  color: #ffffff;
+  color: #c4c4c4;
   width: 100%;
   margin-left: -30px;
-  text-align: center;
   font-size: 0.8rem;
 `
 const Repositories = styled.li`
   list-style: none;
   line-height: 1.6em;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   a{
     text-decoration: none;
     font-size: 0.8rem;
     color: #ffffff;
     i{
       cursor: pointer;
-      opacity: 0.6
+      opacity: 0.6;
       :hover {
         opacity: 1;
       }
@@ -92,7 +94,6 @@ class SearchRepository extends React.Component {
           id: id,
           title: title,
           url: url,
-          select: false,
           key: "favorite"
         })
       .write()
@@ -108,7 +109,7 @@ class SearchRepository extends React.Component {
             aria-label="Search"
             ref={(input) => {
             this.searchBox = input;
-          }}/>
+          }} autoFocus/>
           <SearchButton type="submit" onClick={this.onClick} className="fa fa-search"></SearchButton>
         </form>
         <div>

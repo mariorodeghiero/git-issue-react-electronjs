@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import onClickOutside from "react-onclickoutside";
-import Search from "./SearchIssue";
 import styled from 'styled-components';
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+
+import Search from "./SearchIssue";
 import SearchRepository from './SearchRepositories';
+import Trash from '../../resources/garbage.svg'
 
 const HeaderSelect = styled.div `
   width: 100%;
@@ -19,7 +23,7 @@ const SelectRepo = styled.p `
 const ListRepo = styled.ul `
   margin: 0;
   padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   color: #FFFFFF;
   -webkit-animation: fadein 2s;
   -moz-animation: fadein 2s;
@@ -31,7 +35,7 @@ const ListRepo = styled.ul `
     line-height: 2em;
     font-size: 0.9rem;
     font-weight: 300;
-    cursor: default;
+    cursor: pointer;
     text-align: left;
     list-style: none;
     opacity: 0.8;
@@ -40,7 +44,7 @@ const ListRepo = styled.ul `
     }
   }
   @keyframes fadein {
-    from{opacity: 0.3;}
+    from{opacity: 0.4;}
     to{opacity: 1;}
   }
 `
@@ -57,6 +61,17 @@ const Option = styled.img `
   height: 18px;
   position: absolute;
   padding-left: 10px;
+`
+const TrashIcon = styled.img `
+  width: 13px;
+  height: 13px;
+  opacity: 0.4;
+  margin-left: -20px;
+  margin-right: 20px;
+  :hover {
+    cursor: pointer;
+    opacity: 1;
+  }
 `
 
 const FilterClosed = styled.form `
@@ -89,8 +104,17 @@ class Dropdown extends Component {
   selectItem = (title, url, id, stateKey) => {
     this.setState({
       headerTitle: title,
-      listOpen: false
+      listOpen: false,
     }, this.props.fetchRepo(url, id, stateKey))
+  }
+
+  deleteItem = (title, url, id) => {
+    const adapter = new FileSync('./db.json')
+    const db = low(adapter)
+    db.get('favorite')
+      .remove({ id: id, title: title, url: url, select: false, key: "favorite" })
+      .write()
+    this.toggleList()
   }
 
   toggleList = () => {
@@ -100,8 +124,6 @@ class Dropdown extends Component {
   }
 
   render() {
-    const low = require('lowdb')
-    const FileSync = require('lowdb/adapters/FileSync')
     const adapter = new FileSync('./db.json')
     const db = low(adapter)
     const list = db
@@ -111,20 +133,17 @@ class Dropdown extends Component {
     const {listOpen, icon, title, addBox, library} = this.state;
     return (
       <HeaderSelect>
-        <div className="dd-header">
-          <SelectRepo className="dd-header-title" onClick={this.toggleList}>
+        <div>
+          <SelectRepo onClick={this.toggleList}>
             {listOpen
               ? <i className="fas fa-angle-down 2x"/>
               : <i className="fas fa-angle-right 2x"/>}
               <Option src={icon}/><Label>{title}</Label>
           </SelectRepo>
         </div>
-        {listOpen && <ListRepo className="dd-list">
+        {listOpen && <ListRepo>
           {library && list.map((item) => (
-            <li
-              className="dd-list-item"
-              key={item.id}
-              onClick={() => this.selectItem(item.title, item.url, item.id, item.key)}>{item.title} {item.selected && <i className="fas fa-check"/>}</li>
+            <li key={item.id}><TrashIcon src={Trash} onClick={() => this.deleteItem(item.title, item.url, item.id, item.key)} alt="trash icon"/><span onClick={() => this.selectItem(item.title, item.url, item.id, item.key)}>{item.title}</span></li>
           ))}
           {addBox && <SearchRepository/>}
         </ListRepo>}

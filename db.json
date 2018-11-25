@@ -1,38 +1,16 @@
 {
   "favorite": [
     {
-      "id": 0,
-      "title": "vue-theme-vscode",
-      "url": "https://api.github.com/repos/mariorodeghiero/vue-theme-vscode",
-      "selected": false,
-      "key": "favorite"
-    },
-    {
       "id": 1,
       "title": "frontendbr-forum",
       "url": "https://api.github.com/repos/frontendbr/forum",
-      "selected": false,
+      "select": false,
       "key": "favorite"
     },
     {
       "id": 41881900,
       "title": "vscode",
       "url": "https://api.github.com/repos/Microsoft/vscode",
-      "select": false,
-      "key": "favorite"
-    },
-    {
-      "id": 139747529,
-      "title": "react-gist-interview",
-      "url": "https://api.github.com/repos/mariorodeghiero/react-gist-interview",
-      "select": false,
-      "key": "favorite"
-    },
-    {
-      "id": 1580036,
-      "title": "iTerm2",
-      "url": "https://api.github.com/repos/gnachman/iTerm2",
-      "select": false,
       "key": "favorite"
     }
   ]

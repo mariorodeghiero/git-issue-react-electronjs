@@ -13,6 +13,7 @@ import ReadMarkdown from './ReadMarkdown';
 import styles from './Home.css';
 import Favorite from '../favorite.svg';
 
+const WebView = require('react-electron-web-view');
 
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
@@ -40,13 +41,6 @@ export default class Home extends Component {
       .renderComments
       .bind(this);
   }
-
-  // componentDidMount() {
-  // fetch('https://api.github.com/repos/frontendbr/forum/issues?per_page=100')
-  // .then(response => response.json())     .then(data => { this.setState({data})
-  //  })   console.log("Teste db: ", db) console.log("Teste dado: ",
-  // db.get('favorite').value())   this.setState({ favorite: db .get('favorite')
-  //   .value()   }) }
 
   newUrl() {
     db
@@ -96,7 +90,10 @@ export default class Home extends Component {
               status={this.state.data[key].state}
               avatar={this.state.data[key].user.avatar_url}
               issueUrl={this.state.data[key].comments_url}
-              renderComments={this.renderComments}/>)
+              renderComments={this.renderComments}
+              comments={this.state.data[key].comments}
+              />)
+
 }</div>
         </div>
         <div className="show-issue">
