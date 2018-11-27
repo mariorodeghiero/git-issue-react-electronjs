@@ -87,16 +87,23 @@ class SearchRepository extends React.Component {
 
 
   addLibrary(id, title, url){
-     db
-      .get('favorite')
-      .push(
-        {
-          id: id,
-          title: title,
-          url: url,
-          key: "favorite"
-        })
-      .write()
+    const library = this.props.library;
+    let index = library.findIndex(val => val.id == id);
+      if(index < 0) {
+         db
+          .get('favorite')
+          .push(
+            {
+              id: id,
+              title: title,
+              url: url,
+              key: "favorite"
+            })
+          .write()
+          this.props.toggleList();
+      } else {
+          alert("item existente")
+      }
   }
 
   render() {
@@ -120,7 +127,6 @@ class SearchRepository extends React.Component {
             .map((item, index) => (
               <Repositories key={index}>
                 <a key={index}  onClick={() => this.addLibrary(item.id, item.name, item.url)} type="button" title={item.full_name + " ⭐️" + item.stargazers_count + " ⬇️" + item.forks }><i className="fa fa-plus fa-sm"/> {item.name}</a>
-                {console.log("test serch: ", item)}
               </Repositories>
             ))}
           </ContainerRepository>

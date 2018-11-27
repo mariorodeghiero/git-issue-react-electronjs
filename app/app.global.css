@@ -33,10 +33,14 @@ hr {
     opacity: 0.4;
 }
 
+i {
+    cursor: pointer;
+}
+
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 220px 300px minmax(610px, auto);
+    grid-template-columns: 250px 300px minmax(610px, auto);
 }
 
 .container-issue {
@@ -49,7 +53,6 @@ hr {
     width: 80px;
     height: 80px;
     opacity: 0.1;
-
     /* position: relative; */
     float: left;
     margin-left: 40%;
@@ -62,7 +65,7 @@ hr {
 }
 
 .show-issue {
-    padding: 50px;
+    padding-top: 50px;
     overflow: scroll;
     max-height: 90vh;
     text-align: center;

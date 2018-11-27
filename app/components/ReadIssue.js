@@ -9,7 +9,8 @@ const Card = styled.div `
   border: 1px solid #d1d5da;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  width: 90%;
+  width: 80%;
+  margin: 0 auto;
 `
 const Header = styled.header `
   background-color: #F6F8FA;
@@ -63,7 +64,14 @@ const Text = styled.div `
     max-width: 100%;
     overflow: auto;
     font-weight: 300;
-
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 1px solid #000000;
+  }
+  strong{
+    font-weight: 400;
   }
 `
 const Line = styled.div `

@@ -1,16 +1,45 @@
 {
   "favorite": [
     {
-      "id": 1,
-      "title": "frontendbr-forum",
+      "id": 50837290,
+      "title": "forum",
       "url": "https://api.github.com/repos/frontendbr/forum",
-      "select": false,
       "key": "favorite"
     },
     {
       "id": 41881900,
       "title": "vscode",
       "url": "https://api.github.com/repos/Microsoft/vscode",
+      "key": "favorite"
+    },
+    {
+      "id": 51270739,
+      "title": "awesome-vscode",
+      "url": "https://api.github.com/repos/viatsko/awesome-vscode",
+      "key": "favorite"
+    },
+    {
+      "id": 60630844,
+      "title": "monaco-editor",
+      "url": "https://api.github.com/repos/Microsoft/monaco-editor",
+      "key": "favorite"
+    },
+    {
+      "id": 29028775,
+      "title": "react-native",
+      "url": "https://api.github.com/repos/facebook/react-native",
+      "key": "favorite"
+    },
+    {
+      "id": 40997482,
+      "title": "vim",
+      "url": "https://api.github.com/repos/vim/vim",
+      "key": "favorite"
+    },
+    {
+      "id": 3673976,
+      "title": "lets-chat",
+      "url": "https://api.github.com/repos/sdelements/lets-chat",
       "key": "favorite"
     }
   ]
