@@ -178,8 +178,6 @@ class Dropdown extends Component {
       this.setState(prevState => ({
       active: !prevState.active
     }))
-    this.toggleList()
-    console.log("test", title, id, url)
   }
   cancelDelete = () => {
     this.setState(prevState => ({
@@ -188,6 +186,7 @@ class Dropdown extends Component {
   }
 
   toggleList = () => {
+    const adapter = new FileSync('./db.json')
     this.setState(prevState => ({
       listOpen: !prevState.listOpen
     }))

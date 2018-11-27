@@ -37,11 +37,11 @@ const Name = styled.p `
 const Status = styled.label`
     font-size: 0.5rem;
     background-color: ${props => props.status == 'open'
-  ? "#2ECC40"
+  ? "#88D498"
   : "#FF4136"};
     color: ${props => props.status == 'open'
-    ? "#000"
-    : "#FFF"};
+    ? "#000000"
+    : "#ffffff"};
     border-radius: 2px;
     box-shadow: inset 0 -1px 0 rgba(27,31,35,.12);
     font-weight: 300;
@@ -91,6 +91,7 @@ class Issue extends Component {
           <Title>#{this.props.number} {this.props.title}</Title>
             <Text>{this.props.text}</Text>
             <p>{this.props.label}</p>
+            {console.log(this.props)}
             <Status status={this.props.status}>{this.props.status}</Status>
           </div>
           <div>

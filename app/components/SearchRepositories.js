@@ -69,10 +69,6 @@ const ContainerRepository = styled.ul`
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
-const adapter = new FileSync('./db.json')
-const db = low(adapter)
-
-
 class SearchRepository extends React.Component {
 
   constructor(props) {
@@ -81,12 +77,14 @@ class SearchRepository extends React.Component {
       .onClick
       .bind(this);
     this.state = {
-      repositories: []
+      repositories: [],
+      isNotFound: false
     };
   }
 
-
   addLibrary(id, title, url){
+    const adapter = new FileSync('./db.json')
+    const db = low(adapter)
     const library = this.props.library;
     let index = library.findIndex(val => val.id == id);
       if(index < 0) {
@@ -121,14 +119,14 @@ class SearchRepository extends React.Component {
         </form>
         <div>
           <ContainerRepository>
-          {this
+          { !this.state.isNotFound ? this
             .state
             .repositories
             .map((item, index) => (
               <Repositories key={index}>
                 <a key={index}  onClick={() => this.addLibrary(item.id, item.name, item.url)} type="button" title={item.full_name + " ⭐️" + item.stargazers_count + " ⬇️" + item.forks }><i className="fa fa-plus fa-sm"/> {item.name}</a>
               </Repositories>
-            ))}
+            )) : <p>Repository not found</p>}
           </ContainerRepository>
         </div>
       </div>
@@ -143,11 +141,12 @@ class SearchRepository extends React.Component {
     fetch(endpoint)
       .then(blob => blob.json())
       .then(response => {
-        this.setState({repositories: response.items});
-        console.log('repo: ', response)
+        if( response.total_count != 0 ) {
+          this.setState({repositories: response.items, isNotFound: false});
+        }
+        else {  this.setState({isNotFound: true})}
       });
     event.preventDefault();
-
   }
 }
 

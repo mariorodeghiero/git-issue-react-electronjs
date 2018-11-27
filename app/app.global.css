@@ -40,7 +40,7 @@ i {
 .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 250px 300px minmax(610px, auto);
+    grid-template-columns: 250px 300px auto;
 }
 
 .container-issue {
@@ -53,9 +53,8 @@ i {
     width: 80px;
     height: 80px;
     opacity: 0.1;
-    /* position: relative; */
     float: left;
-    margin-left: 40%;
+    margin-left: 45%;
     margin-top: 43%;
     margin-bottom: 43%;
 }
@@ -68,7 +67,6 @@ i {
     padding-top: 50px;
     overflow: scroll;
     max-height: 90vh;
-    text-align: center;
 }
 
 .show-issue::-webkit-scrollbar {

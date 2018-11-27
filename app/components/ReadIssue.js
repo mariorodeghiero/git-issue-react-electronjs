@@ -10,6 +10,7 @@ const Card = styled.div `
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   width: 80%;
+  max-width: 500px;
   margin: 0 auto;
 `
 const Header = styled.header `
@@ -77,7 +78,7 @@ const Text = styled.div `
 const Line = styled.div `
   height: 30px;
   width: 1px;
-  padding-right: 20px;
+  padding-right: 20%;
   border-right: 1px solid #d1d5da;
 `
 

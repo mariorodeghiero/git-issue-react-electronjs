@@ -13,33 +13,15 @@
       "key": "favorite"
     },
     {
+      "id": 118138239,
+      "title": "vue-theme-vscode",
+      "url": "https://api.github.com/repos/mariorodeghiero/vue-theme-vscode",
+      "key": "favorite"
+    },
+    {
       "id": 51270739,
       "title": "awesome-vscode",
       "url": "https://api.github.com/repos/viatsko/awesome-vscode",
-      "key": "favorite"
-    },
-    {
-      "id": 60630844,
-      "title": "monaco-editor",
-      "url": "https://api.github.com/repos/Microsoft/monaco-editor",
-      "key": "favorite"
-    },
-    {
-      "id": 29028775,
-      "title": "react-native",
-      "url": "https://api.github.com/repos/facebook/react-native",
-      "key": "favorite"
-    },
-    {
-      "id": 40997482,
-      "title": "vim",
-      "url": "https://api.github.com/repos/vim/vim",
-      "key": "favorite"
-    },
-    {
-      "id": 3673976,
-      "title": "lets-chat",
-      "url": "https://api.github.com/repos/sdelements/lets-chat",
       "key": "favorite"
     }
   ]
