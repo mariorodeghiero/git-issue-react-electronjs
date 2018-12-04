@@ -3,8 +3,8 @@
 <img src="https://raw.githubusercontent.com/mariorodeghiero/git-issue-react-electronjs/master/resources/icon.ico" width="80px" height="80px" /> <h1>GitHub Issue </h1>
 
 <p align="center">
-    A Desktop App built with  <a href="http://electron.atom.io/">Electron</a> and <a href="https://facebook.github.io/react/">React</a> to be Cross-Platform to manage GitHub issues.
-</p>
+ A desktop application created with <a href="http://electron.atom.io/">ElectronJS</a> and <a     href="https://facebook.github.io/react/">ReactJS</a> to be cross-platform to manage and track GitHub issues.
+ </p>
 
 </div>
 
@@ -19,7 +19,7 @@
 
 <div align="center">
 
-![Git Issue](https://user-images.githubusercontent.com/24671133/48907228-f7145f00-ee4d-11e8-8000-a21130cc25d0.gif)
+![Git Issue](https://user-images.githubusercontent.com/24671133/49445258-adfecc00-f7b8-11e8-81a0-63240ff2ddff.gif)
 
 <!-- ![Git Issue](./resources/screenShot.png) -->
 
