@@ -1,6 +1,7 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
 
+
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
 
@@ -45,17 +46,17 @@ export default class MenuBuilder {
 
   buildDarwinTemplate() {
     const subMenuAbout = {
-      label: 'Git Issue',
+      label: 'Electron',
       submenu: [
         {
-          label: 'About Git Issue',
+          label: 'About ElectronReact',
           selector: 'orderFrontStandardAboutPanel:'
         },
         { type: 'separator' },
         { label: 'Services', submenu: [] },
         { type: 'separator' },
         {
-          label: 'Hide Git Issue',
+          label: 'Hide ElectronReact',
           accelerator: 'Command+H',
           selector: 'hide:'
         },
@@ -148,25 +149,27 @@ export default class MenuBuilder {
         {
           label: 'Learn More',
           click() {
-            shell.openExternal('https://github.com/mariorodeghiero/git-issue-react-electronjs');
+            shell.openExternal('http://electron.atom.io');
           }
         },
         {
           label: 'Documentation',
           click() {
-            shell.openExternal('https://github.com/mariorodeghiero/git-issue-react-electronjs/blob/master/README.md');
+            shell.openExternal(
+              'https://github.com/atom/electron/tree/master/docs#readme'
+            );
           }
         },
         {
           label: 'Community Discussions',
           click() {
-            shell.openExternal('https://github.com/mariorodeghiero/git-issue-react-electronjs/issues');
+            shell.openExternal('https://discuss.atom.io/c/electron');
           }
         },
         {
           label: 'Search Issues',
           click() {
-            shell.openExternal('https://github.com/mariorodeghiero/git-issue-react-electronjs/issues');
+            shell.openExternal('https://github.com/atom/electron/issues');
           }
         }
       ]
@@ -243,27 +246,27 @@ export default class MenuBuilder {
           {
             label: 'Learn More',
             click() {
-              shell.openExternal('https://github.com/mariorodeghiero/git-issue-react-electronjs');
+              shell.openExternal('http://electron.atom.io');
             }
           },
           {
             label: 'Documentation',
             click() {
               shell.openExternal(
-                'https://github.com/mariorodeghiero/git-issue-react-electronjs/blob/master/README.md'
+                'https://github.com/atom/electron/tree/master/docs#readme'
               );
             }
           },
           {
             label: 'Community Discussions',
             click() {
-              shell.openExternal('https://github.com/mariorodeghiero/git-issue-react-electronjs/issues');
+              shell.openExternal('https://discuss.atom.io/c/electron');
             }
           },
           {
             label: 'Search Issues',
             click() {
-              shell.openExternal('https://github.com/mariorodeghiero/git-issue-react-electronjs/issues');
+              shell.openExternal('https://github.com/atom/electron/issues');
             }
           }
         ]

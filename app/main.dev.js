@@ -69,11 +69,11 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1070,
-    minWidth: 1070,
-    minHeight: 600,
+    width: 1024,
+    minWidth: 1024,
+    minHeight: 628,
     height: 728,
-    titleBarStyle: 'hidden'
+    titleBarStyle: "hidden",
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);

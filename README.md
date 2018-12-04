@@ -57,11 +57,23 @@ $ yarn
 
 Start the app in the `dev` environment:
 
+```
+$ yarn dev
+```
+
+OR
+
 ```bash
 $ npm run dev
 ```
 
 ## Packaging
+
+You can debug your production build with devtools by simply setting the DEBUG_PROD env variable:
+
+```
+$ DEBUG_PROD=true yarn package
+```
 
 To package apps for the local platform:
 

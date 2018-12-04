@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import CommentIcon from '../comment.svg';
 import styled from 'styled-components';
 
+import CommentIcon from '../comment.svg';
 
 const Card = styled.div `
     padding: 10px;
@@ -34,7 +34,7 @@ const Avatar = styled.img `
 const Name = styled.p `
     font-size: 0.4rem;
 `
-const Status = styled.label`
+const Status = styled.label `
     font-size: 0.5rem;
     background-color: ${props => props.status == 'open'
   ? "#88D498"
@@ -68,38 +68,45 @@ const NumberOfComments = styled.span `
     text-align: right;
 `
 
-
 class Issue extends Component {
   constructor(props) {
     super(props);
-
   }
 
-  fetchCommentsUrl = (url, title, text, avatar, user) => {
+  fetchCommentsUrl = (url, title, text, avatar, user, pageUrl) => {
     this
       .props
-      .renderComments(url, title, text, avatar, user)
-      console.log(url)
+      .renderComments(url, title, text, avatar, user, pageUrl)
   }
   render() {
-
+    const {
+      issueUrl,
+      title,
+      text,
+      avatar,
+      user,
+      pageUrl,
+      number,
+      label,
+      status,
+      comments
+    } = this.props;
     return (
       <a
-        onClick={() => this.fetchCommentsUrl(this.props.issueUrl, this.props.title, this.props.text, this.props.avatar, this.props.user)}>
+        onClick={() => this.fetchCommentsUrl(issueUrl, title, text, avatar, user, pageUrl)}>
         <Card >
           <div>
-          <Title>#{this.props.number} {this.props.title}</Title>
-            <Text>{this.props.text}</Text>
-            <p>{this.props.label}</p>
-            {console.log(this.props)}
-            <Status status={this.props.status}>{this.props.status}</Status>
+            <Title>#{number} {title}</Title>
+            <Text>{text}</Text>
+            <p>{label}</p>
+            <Status status={status}>{status}</Status>
           </div>
           <div>
-            <User>
-              <Avatar className="avatar" src={this.props.avatar} alt="Avatar"/>
-              <Name>@{this.props.user}</Name>
+            <User >
+              <Avatar className="avatar" src={avatar} alt="Avatar" title={"@" + user}/>
+              <Name title={"@" + user}>@{user}</Name>
               <Comments src={CommentIcon} alt="comment icon"/>
-              <NumberOfComments>{this.props.comments}</NumberOfComments>
+              <NumberOfComments>{comments}</NumberOfComments>
             </User>
           </div>
         </Card>

@@ -1,25 +1,41 @@
 // @flow
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+
 import routes from '../constants/routes';
-import Icon from '../logo.png'
-import Issue from './Issue'
-import Pagination from './Pagination'
-import SearchIssue from './SearchIssue'
-import Sidebar from './Sidebar'
+import Icon from '../logo.png';
+import Issue from './Issue';
+import SearchIssue from './SearchIssue';
+import Sidebar from './Sidebar';
 import Dropdown from './Dropdown';
 import ReadIssue from './ReadIssue';
 import ReadMarkdown from './ReadMarkdown';
 import styles from './Home.css';
 import Favorite from '../favorite.svg';
 
-const WebView = require('react-electron-web-view');
-
+var electron = require('electron');
+const app = electron.remote.app;
+var userData = app.getPath('userData');
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
-
-const adapter = new FileSync('./db.json')
+const adapter = new FileSync(userData + 'db.json')
 const db = low(adapter)
+
+let data1 = {
+  "favorite": [
+    {
+      "id": 50837290,
+      "full_name": "frontendbr/forum",
+      "title": "forum",
+      "url": "https://api.github.com/repos/frontendbr/forum",
+      "key": "favorite"
+    }
+  ]
+}
+
+db
+  .defaults(data1)
+  .write()
 
 export default class Home extends Component {
   constructor(props) {
@@ -32,7 +48,9 @@ export default class Home extends Component {
       avatarIssue: '',
       titleIssue: '',
       textIssue: '',
-      commentsData: ''
+      pageUrl: '',
+      commentsData: '',
+      dbTest: []
     };
     this.fetchRepo = this
       .fetchRepo
@@ -42,22 +60,15 @@ export default class Home extends Component {
       .bind(this);
   }
 
-  newUrl() {
-    db
-      .get('favorite')
-      .push({id: 3, url: 'url3'})
-      .write()
-  }
-
   fetchRepo = (url, id, key) => {
     fetch(url + "/issues?per_page=100")
       .then(response => response.json())
       .then(data => {
-        this.setState({data})
+        this.setState({data});
       })
   }
 
-  renderComments(url, title, text, avatar, user) {
+  renderComments(url, title, text, avatar, user, pageUrl) {
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -67,7 +78,8 @@ export default class Home extends Component {
           titleIssue: title,
           textIssue: text,
           avatarIssue: avatar,
-          userIssue: user
+          userIssue: user,
+          pageUrl: pageUrl
         })
       })
   }
@@ -75,6 +87,14 @@ export default class Home extends Component {
   render() {
     const issues = Object.keys(this.state.data);
     const commentsList = Object.keys(this.state.commentsData);
+    const {
+      userIssue,
+      isComments,
+      avatarIssue,
+      titleIssue,
+      textIssue,
+      pageUrl
+    } = this.state;
 
     return (
       <div className="container">
@@ -92,25 +112,23 @@ export default class Home extends Component {
               issueUrl={this.state.data[key].comments_url}
               renderComments={this.renderComments}
               comments={this.state.data[key].comments}
-              />)
-
-}</div>
+              pageUrl={this.state.data[key].html_url}/>)}
+          </div>
         </div>
         <div className="show-issue">
-          {!this.state.isComments && <img className="logo" src={Icon} alt="logo"/>}
-          {this.state.isComments && <ReadIssue
-            user={this.state.userIssue}
-            avatar={this.state.avatarIssue}
-            title={this.state.titleIssue}
-            text={this.state.textIssue}/>
-}
-          {this.state.isComments && commentsList.map(key => <ReadIssue
+          {!isComments && <img className="logo" src={Icon} alt="logo"/>}
+          {isComments && <ReadIssue
+            user={userIssue}
+            avatar={avatarIssue}
+            title={titleIssue}
+            text={textIssue}
+            pageUrl={pageUrl}/>}
+          {isComments && commentsList.map(key => <ReadIssue
             key={key}
             user={this.state.commentsData[key].user.login}
             avatar={this.state.commentsData[key].user.avatar_url}
             text={this.state.commentsData[key].body}
-            isComment={this.state.isComments}/>)
-}
+            isComment={this.state.isComments}/>)}
         </div>
       </div>
     );

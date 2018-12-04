@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import onClickOutside from "react-onclickoutside";
-import styled, {keyframes} from 'styled-components';
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+import styled, {keyframes} from 'styled-components';;
 
 import Search from "./SearchIssue";
+import {notSelect} from "../style-utils";
 import SearchRepository from './SearchRepositories';
-import Trash from '../../resources/garbage.svg'
 
 const HeaderSelect = styled.div `
   width: 100%;
@@ -20,7 +18,11 @@ const SelectRepo = styled.div `
 `
 
 const ListRepo = styled.ul `
-  margin: 0;
+  max-height: 58vh;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   padding-top: 20px;
   color: #FFFFFF;
   -webkit-animation: fadein  2s;
@@ -28,19 +30,21 @@ const ListRepo = styled.ul `
   -ms-animation: fadein 2s;
   -o-animation: fadein 2s;
   animation: fadein 2s;
-  li{
-    margin-left: ${props => props.active === false ? "-30px" : "-50px"};
+  li {
+    margin-left: ${props => props.active === false
+  ? "-30px"
+  : "-50px"};
     line-height: 2em;
     list-style: none;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    span{
+    span {
       opacity: 0.9;
       font-size: 0.9rem;
       font-weight: 300;
-      padding-left: 8px;
-      :hover{
+      cursor: default;
+      :hover {
         opacity: 1;
       }
     }
@@ -72,35 +76,34 @@ const animationName = keyframes `
 
 const MoveToTrash = styled.button `
   float: right;
-  margin-top: -10px;
+  margin-top: -20px;
   margin-right: 20px;
   color: #ffffff;
   background-color: transparent;
   border: none;
   opacity: 0.4;
-  :hover{
-    opacity:  ${props => props.active === true ? "0.4" : "1"};
+  :hover {
+    opacity:  ${props => props.active === true
+  ? "0.4"
+  : "1"};
   }
-  :focus {
-    outline: 0;
-  }
+  ${notSelect()}
 `
 const TrashButton = styled.button `
   color: #ffffff;
-  margin-left: 2px;
-  margin-right: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
   background-color: transparent;
   border: none;
   opacity: 0.4;
-  cursor: default;
-  display: ${props => props.active === true ? "inline-block" : "none"};
-  :focus {
-    outline: 0  ;
-  }
+  display: ${props => props.active === true
+  ? "inline-block"
+  : "none"};
+  ${notSelect()}
 `
 
 const CheckButton = styled.button `
-    margin-left: 2px;
+    margin-left: 10px;
     background-color: red;
     border: none;
     border-radius: 4px;
@@ -108,7 +111,10 @@ const CheckButton = styled.button `
     padding: 2px 5px;
     cursor: pointer;
     animation: ${animationName} 1s;
-    display: ${props => props.active === true ? "inline-block" : "none"};
+    display: ${props => props.active === true
+  ? "inline-block"
+  : "none"};
+    ${notSelect()}
 `
 
 const CancelButton = styled.button `
@@ -120,15 +126,21 @@ const CancelButton = styled.button `
     color: #ffffff;
     cursor: pointer;
     animation: ${animationName} 1s linear;
-    display: ${props => props.active === true ? "inline-block" : "none"};
+    display: ${props => props.active === true
+  ? "inline-block"
+  : "none"};
+    ${notSelect()}
 `
 const LinkButton = styled.button `
     background-color: transparent;
-    color: #ffffff;
     border: none;
     cursor: pointer;
     animation: ${animationName} 1s linear;
-    display: ${props => props.active === false ? "inline-block" : "none"};
+    color: #ffffff;
+    display: ${props => props.active !== true
+  ? "inline-block"
+  : "none"};
+    ${notSelect()}
 `
 
 const FilterClosed = styled.form `
@@ -141,6 +153,12 @@ const FilterClosed = styled.form `
   border: 1px solid #dfdfdf;
 `
 
+var electron = require('electron');
+const app = electron.remote.app;
+var userData = app.getPath('userData');
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+
 class Dropdown extends Component {
   constructor(props) {
     super(props)
@@ -151,11 +169,14 @@ class Dropdown extends Component {
       title: this.props.title,
       addBox: this.props.addBox,
       library: this.props.library,
-      active: false
+      active: false,
+      linkActive: 0,
+      newList: ''
     }
 
-    // this.cancelDelete = this.cancelDelete.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
+    this.deleteItem = this
+      .deleteItem
+      .bind(this);
   }
 
   handleClickOutside(e) {
@@ -164,18 +185,19 @@ class Dropdown extends Component {
 
   selectItem = (title, url, id, stateKey) => {
     this.setState({
-      headerTitle: title,
-      listOpen: false,
+      headerTitle: title, linkActive: id,
+      // listOpen: false,
     }, this.props.fetchRepo(url, id, stateKey))
   }
 
   deleteItem = (title, url, id) => {
-    const adapter = new FileSync('./db.json')
+    const adapter = new FileSync(userData + 'db.json')
     const db = low(adapter)
-    db.get('favorite')
-      .remove({ id: id, title: title, url: url, key: "favorite" })
+    db
+      .get('favorite')
+      .remove({id: id, title: title, url: url, key: "favorite"})
       .write()
-      this.setState(prevState => ({
+    this.setState(prevState => ({
       active: !prevState.active
     }))
   }
@@ -186,20 +208,28 @@ class Dropdown extends Component {
   }
 
   toggleList = () => {
-    const adapter = new FileSync('./db.json')
+    const adapter = new FileSync(userData + './db/db.json')
     this.setState(prevState => ({
       listOpen: !prevState.listOpen
     }))
   }
 
   render() {
-    const adapter = new FileSync('./db.json')
+    const adapter = new FileSync(userData + 'db.json')
     const db = low(adapter)
     const list = db
       .get('favorite')
       .value();
 
-    const {listOpen, icon, title, addBox, library} = this.state;
+    const {
+      listOpen,
+      icon,
+      title,
+      addBox,
+      library,
+      active,
+      linkActive
+    } = this.state;
     return (
       <HeaderSelect>
         <div>
@@ -207,32 +237,37 @@ class Dropdown extends Component {
             {listOpen
               ? <i className="fas fa-angle-down 2x"/>
               : <i className="fas fa-angle-right 2x"/>}
-              <Option src={icon}/><Label>{title}</Label>
+            <Option src={icon}/>
+            <Label>{title}</Label>
           </SelectRepo>
         </div>
-        {listOpen && <ListRepo active={this.state.active}>
-         {!addBox &&
-          <MoveToTrash onClick={() => this.cancelDelete()} active={this.state.active}>
-				    <i className="far fa-trash-alt fa-lg"></i>
-			    </MoveToTrash>}
+        {listOpen && <ListRepo active={active}>
+          {!addBox && <MoveToTrash onClick={() => this.cancelDelete()} active={active}>
+            <i className="far fa-trash-alt fa-lg"></i>
+          </MoveToTrash>}
           {library && list.map((item) => (
-            <li key={item.id}>
-            <LinkButton
+            <li key={item.id} title={item.fullName}>
+              <LinkButton
                 onClick={() => this.selectItem(item.title, item.url, item.id, item.key)}
-                active={this.state.active}>
-                <i className="fas fa-sign-in-alt fa-lg"></i>
-            </LinkButton>
-      <CheckButton onClick={() => this.deleteItem(item.title, item.url, item.id)} active={this.state.active}>
-				<i className="fas fa-check fa-xs"></i>
-			</CheckButton>
-			<TrashButton active={this.state.active}>
-				<i className="fas fa-trash-alt"></i>
-			</TrashButton>
-			<CancelButton onClick={() => this.cancelDelete()} active={this.state.active}>
-				<i className="fas fa-times fa-xs"></i>
-			</CancelButton>
-      {console.log("state button", this.state.active)}
-      <span>{item.title}</span></li>
+                active={active}>
+                <i
+                  className={item.id !== linkActive
+                  ? "fas fa-sign-in-alt fa-lg"
+                  : "fas fa-sign-in-alt fa-lg link-desable"}></i>
+              </LinkButton>
+              <CheckButton
+                onClick={() => this.deleteItem(item.title, item.url, item.id)}
+                active={active}>
+                <i className="fas fa-check fa-xs"></i>
+              </CheckButton>
+              <TrashButton active={active}>
+                <i className="fas fa-trash-alt"></i>
+              </TrashButton>
+              <CancelButton onClick={() => this.cancelDelete()} active={active}>
+                <i className="fas fa-times fa-xs"></i>
+              </CancelButton>
+              <span>{item.title}</span>
+            </li>
           ))}
           {addBox && <SearchRepository toggleList={this.toggleList} library={list}/>}
         </ListRepo>}
@@ -242,5 +277,3 @@ class Dropdown extends Component {
 }
 
 export default onClickOutside(Dropdown);
-
-  // <TrashIcon src={Trash} onClick={() => this.deleteItem(item.title, item.url, item.id, item.key)} alt="trash icon" title="Delete"/>

@@ -1,20 +1,21 @@
 import React from 'react'
 import styled from 'styled-components';
+
+import RepositoryNotFound from './RepositoryNotFound';
 let searchTerm;
 
-const SearchButton = styled.button`
+const SearchButton = styled.button `
   background-color: transparent;
   border: none;
   color: #c4c4c4;
   outline: 0;
   margin-top: 20px;
-  :hover{
+  :hover {
     cursor: pointer;
   }
 `
 
-const SearchInput = styled.input`
-  margin-top: 20px;
+const SearchInput = styled.input `
   margin-bottom: 20px;
   outline: 0;
   background: transparent;
@@ -22,31 +23,33 @@ const SearchInput = styled.input`
   border-bottom: 1px solid #cccccc;
   padding: 5px;
   color: #c4c4c4;
-  width: 100%;
+  width: 80%;
   margin-left: -30px;
   font-size: 0.8rem;
 `
-const Repositories = styled.li`
+const Repositories = styled.li `
   list-style: none;
   line-height: 1.6em;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  a{
+  cursor: default;
+  a {
     text-decoration: none;
     font-size: 0.8rem;
     color: #ffffff;
-    i{
+    i {
       cursor: pointer;
       opacity: 0.6;
+      padding-right: 5px;
       :hover {
         opacity: 1;
       }
     }
   }
 `
-const ContainerRepository = styled.ul`
+const ContainerRepository = styled.ul `
   max-height: 55vh;
   width: 100%;
   overflow-y: scroll;
@@ -63,14 +66,17 @@ const ContainerRepository = styled.ul`
   }
   ::-webkit-scrollbar-thumb {
     background: #eee
-}
+  }
 `
 
+const electron = require('electron');
+
+const app = electron.remote.app;
+const userData = app.getPath('userData');
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
 class SearchRepository extends React.Component {
-
   constructor(props) {
     super(props);
     this.onClick = this
@@ -78,55 +84,68 @@ class SearchRepository extends React.Component {
       .bind(this);
     this.state = {
       repositories: [],
-      isNotFound: false
+      isNotFound: false,
+      isAdd: false,
+      addId: 0
     };
   }
 
-  addLibrary(id, title, url){
-    const adapter = new FileSync('./db.json')
+  addLibrary(id, title, url, fullName) {
+    const adapter = new FileSync(userData + 'db.json')
     const db = low(adapter)
-    const library = this.props.library;
-    let index = library.findIndex(val => val.id == id);
-      if(index < 0) {
-         db
-          .get('favorite')
-          .push(
-            {
-              id: id,
-              title: title,
-              url: url,
-              key: "favorite"
-            })
-          .write()
-          this.props.toggleList();
-      } else {
-          alert("item existente")
-      }
+    const library = db
+      .get('favorite')
+      .value();
+    const index = library.findIndex(val => val.id == id);
+
+    if (index == -1) {
+      db
+        .get('favorite')
+        .push({id, title, url, fullName, key: "favorite"})
+        .write()
+      this.setState({addId: id})
+    } else {
+      alert("This repository already exists in your library.")
+    }
   }
 
   render() {
+    const adapter = new FileSync(`${userData}db.json`)
+    const db = low(adapter)
+    const {isAdd, isNotFound, addId, repositories} = this.state;
     return (
       <div>
         <form>
           <SearchInput
             type="search"
-            placeholder=" search repository..."
+            placeholder="Search repository..."
             aria-label="Search"
             ref={(input) => {
             this.searchBox = input;
-          }} autoFocus/>
-          <SearchButton type="submit" onClick={this.onClick} className="fa fa-search"></SearchButton>
+          }}
+            autoFocus/>
+          <SearchButton
+            type="submit"
+            onClick={this.onClick}
+            className="fas fa-search fa-sm"/>
         </form>
         <div>
           <ContainerRepository>
-          { !this.state.isNotFound ? this
-            .state
-            .repositories
-            .map((item, index) => (
-              <Repositories key={index}>
-                <a key={index}  onClick={() => this.addLibrary(item.id, item.name, item.url)} type="button" title={item.full_name + " ⭐️" + item.stargazers_count + " ⬇️" + item.forks }><i className="fa fa-plus fa-sm"/> {item.name}</a>
-              </Repositories>
-            )) : <p>Repository not found</p>}
+            {!isNotFound
+              ? repositories.map((item, index) => (
+                <Repositories key={index}>
+                  <a
+                    key={index}
+                    type="button"
+                    title={`${item.full_name} ⭐️${item.stargazers_count} ⬇️${item.forks}`}><i
+                    className={item.id === addId
+                  ? "far fa-check-circle link-desable"
+                  : "fas fa-plus fa-sm"}
+                    onClick={() => this.addLibrary(item.id, item.name, item.url, item.full_name)}/> {item.name}
+                  </a>
+                </Repositories>
+              ))
+              : <RepositoryNotFound/>}
           </ContainerRepository>
         </div>
       </div>
@@ -134,17 +153,16 @@ class SearchRepository extends React.Component {
   }
 
   onClick(event) {
-
     searchTerm = this.searchBox.value;
     const endpoint = `https://api.github.com/search/repositories?sort=stars&order=desc&q=${searchTerm}`;
-    console.log(searchTerm);
     fetch(endpoint)
       .then(blob => blob.json())
       .then(response => {
-        if( response.total_count != 0 ) {
+        if (response.total_count != 0) {
           this.setState({repositories: response.items, isNotFound: false});
+        } else {
+          this.setState({isNotFound: true})
         }
-        else {  this.setState({isNotFound: true})}
       });
     event.preventDefault();
   }

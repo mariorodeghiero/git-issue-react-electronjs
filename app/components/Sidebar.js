@@ -5,16 +5,18 @@ import LogoIcon from '../logo.png';
 import Favorite from '../favorite.svg';
 import AddInbox from '../add-box.svg';
 import styled from 'styled-components';
+import { notSelect } from '../style-utils';
 
 const Wrapper = styled.div `
   max-height: 100vh;
   text-align: center;
-  /* background: #24292D; */
+  background: #24292D;
   /* background: #aec1d4; */
-  background: #3A5374;
+  /* background: #3A5374; */
   height: 100vh;
   padding: 10px;
   color: #F0F2F3;
+  ${notSelect()}
 `
 const Title = styled.h1 `
   font-size: 1.6rem;

@@ -1,35 +1,36 @@
 import React, {Component} from 'react';
+import styled from 'styled-components';
+
 import Exclamation from '../exclamation.svg';
 import CommentIcon from '../comment.svg';
 const ReactMarkdown = require('react-markdown')
-
-import styled from 'styled-components';
+import ExternalLink from './ExternalLink';
 
 const Card = styled.div `
   border: 1px solid #d1d5da;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   width: 80%;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
 `
 const Header = styled.header `
   background-color: #F6F8FA;
   border-bottom: 1px solid #d1d5da;
-  padding: 10px;
+  padding: 5px;
   display: grid;
   grid-template-columns: 80% 20%;
 `
 const User = styled.span `
-  font-size: 0.6rem;
+  font-size: 0.4rem;
   float: right;
   clear: both;
   margin-top: 3px;
   text-align: right;
 `
 const Avatar = styled.img `
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border-radius: 3px;
   clear: both;
   float: right;
@@ -50,12 +51,11 @@ const Icon = styled.img `
 `
 
 const Text = styled.div `
-  padding-right: 20px;
-  padding-left: 20px;
+  padding: 20px;
   font-size: 0.7rem;
   line-height: 1.6em;
-  width: inherit;
-  height: inherit;
+  /* width: inherit;
+  height: inherit; */
   text-align: left;
   img {
     max-width: 100%;
@@ -84,23 +84,35 @@ const Line = styled.div `
 
 class ReadIssue extends React.Component {
   render() {
-
+    const {
+      isComment,
+      title,
+      user,
+      avatar,
+      text,
+      pageUrl
+    } = this.props;
     return (
       <div>
-        {this.props.isComment && <Line/>}
+        {isComment && <Line/>}
+        {pageUrl && <ExternalLink url={pageUrl}/>}
         <Card>
           <Header>
             <div>
-              <Icon alt="icon" src={this.props.isComment == true ? CommentIcon : Exclamation}/>
-              <Title>{this.props.title}</Title>
+              <Icon
+                alt="icon"
+                src={isComment == true
+                ? CommentIcon
+                : Exclamation}/>
+              <Title>{title}</Title>
             </div>
-            <div>
-              <Avatar src={this.props.avatar} alt="Avatar"/>
-              <User>@{this.props.user}</User>
+            <div title={"@" + user}>
+              <Avatar src={avatar} alt="Avatar"/>
+              <User>@{user}</User>
             </div>
           </Header>
           <Text>
-            <ReactMarkdown className="container-markdown"source={this.props.text}/>
+            <ReactMarkdown className="container-markdown" source={text}/>
           </Text>
         </Card>
       </div>

@@ -11,18 +11,6 @@
       "title": "vscode",
       "url": "https://api.github.com/repos/Microsoft/vscode",
       "key": "favorite"
-    },
-    {
-      "id": 118138239,
-      "title": "vue-theme-vscode",
-      "url": "https://api.github.com/repos/mariorodeghiero/vue-theme-vscode",
-      "key": "favorite"
-    },
-    {
-      "id": 51270739,
-      "title": "awesome-vscode",
-      "url": "https://api.github.com/repos/viatsko/awesome-vscode",
-      "key": "favorite"
     }
   ]
 }
