@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-const ReactMarkdown = require('react-markdown')
+import React, {Component} from 'react';
 import styled from 'styled-components';
+const ReactMarkdown = require('react-markdown')
 
 const Avatar = styled.img `
     width: 40px;
@@ -9,12 +9,12 @@ const Avatar = styled.img `
 
 class ReadMarkdown extends React.Component {
   render() {
-
+    const {user, avatar, text} = this.props;
     return (
       <div>
-        <p>{this.props.user}</p>
-        <Avatar src={this.props.avatar}/>
-        <ReactMarkdown source={this.props.text} />
+        <p>{user}</p>
+        <Avatar src={avatar}/>
+        <ReactMarkdown source={text}/>
         <hr/>
       </div>
     );

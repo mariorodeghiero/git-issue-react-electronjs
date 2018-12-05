@@ -10,9 +10,10 @@
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/github/tag/mariorodeghiero/git-issue-react-electronjs.svg?style=flat-square)](https://github.com/mariorodeghiero/git-issue-react-electronjs/tags)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 [![Feature Requests](https://img.shields.io/github/issues/mariorodeghiero/git-issue-react-electronjs/feature-request.svg)](https://github.com/mariorodeghiero/git-issue-react-electronjs/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)
 [![Bugs](https://img.shields.io/github/issues/mariorodeghiero/git-issue-react-electronjs/bug.svg)](https://github.com/mariorodeghiero/git-issue-react-electronjs/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
+[![GitHub](https://img.shields.io/github/tag/mariorodeghiero/git-issue-react-electronjs.svg?style=flat-square)](https://github.com/mariorodeghiero/git-issue-react-electronjs/tags)
 [![The MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
 </div>

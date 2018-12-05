@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+const ReactMarkdown = require('react-markdown')
 
 import Exclamation from '../exclamation.svg';
 import CommentIcon from '../comment.svg';
-const ReactMarkdown = require('react-markdown')
 import ExternalLink from './ExternalLink';
 
 const Card = styled.div `
