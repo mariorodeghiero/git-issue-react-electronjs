@@ -12,6 +12,7 @@ const Wrapper = styled.div `
   max-height: 100vh;
   text-align: center;
   background: #24292D;
+  opacity: 0.98;
   height: 100vh;
   padding: 10px;
   color: #F0F2F3;

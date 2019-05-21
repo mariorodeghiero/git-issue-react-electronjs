@@ -55,6 +55,7 @@ i {
   max-height: 100vh;
   overflow: scroll;
   border-right: 1px solid #e2e5ec;
+  background-color: #EBECF4;
 }
 
 .container-issue::-webkit-scrollbar {
@@ -78,6 +79,8 @@ i {
   padding-top: 50px;
   overflow: scroll;
   max-height: 90vh;
+  background-color: #EBECF4;
+
 }
 
 .show-issue::-webkit-scrollbar {
