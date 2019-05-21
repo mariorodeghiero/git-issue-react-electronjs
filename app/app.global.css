@@ -1,14 +1,19 @@
-/*
- * @NOTE: Prepend a `~` to css file paths that are in your node_modules
- *        See https://github.com/webpack-contrib/sass-loader#imports
+/**
+ * TODO: [x] - deadae
+ *
+ *
+ *
+ *
+ * FIXME
+ *
  */
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,300,100');
 @import '~@fortawesome/fontawesome-free/css/all.css';
 body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 h1,
@@ -21,70 +26,71 @@ span,
 label,
 button,
 form {
-    font-family: 'Roboto';
-    font-weight: 100;
-    letter-spacing: 0.025em;
+  font-family: 'Roboto';
+  font-weight: 100;
+  letter-spacing: 0.025em;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 hr {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 i {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .container {
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 220px 280px auto;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 220px 280px auto;
 }
 
 .container-issue {
-    max-height: 100vh;
-    overflow: scroll;
-    border-right: 1px solid #e2e5ec;
+  max-height: 100vh;
+  overflow: scroll;
+  border-right: 1px solid #e2e5ec;
 }
 
 .container-issue::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .link-desable {
-    color: #41ead4;
+  color: #41ead4;
 }
 
 .logo {
-    width: 80px;
-    height: 80px;
-    opacity: 0.1;
-    margin-left: 45%;
-    margin-top: 50%;
-    margin-bottom: 43%;
+  width: 80px;
+  height: 80px;
+  opacity: 0.1;
+  margin-left: 45%;
+  margin-top: 50%;
+  margin-bottom: 43%;
 }
 
 .show-issue {
-    padding-top: 50px;
-    overflow: scroll;
-    max-height: 90vh;
+  padding-top: 50px;
+  overflow: scroll;
+  max-height: 90vh;
 }
 
 .show-issue::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .container-markdown pre {
-    overflow: auto;
+  overflow: auto;
 }
 
 input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-results-button,
 input[type='search']::-webkit-search-results-decoration {
-    display: none;
+  display: none;
 }
