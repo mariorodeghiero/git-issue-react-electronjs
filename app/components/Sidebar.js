@@ -86,7 +86,7 @@ class Sidebar extends Component {
          <Dropdown icon={Favorite} title={"Library"} library={true} fetchRepo={this.props.fetchRepo} />
          <Dropdown icon={AddInbox} title={"Add Library"} addBox={true} />
           <CopyRight>
-            <span>©2019 Mario Rodeghiero</span>
+            <span>© 2019 Mario Rodeghiero</span>
           </CopyRight>
       </Wrapper>
     );

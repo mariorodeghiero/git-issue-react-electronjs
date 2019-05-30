@@ -8,8 +8,8 @@ import ExternalLink from './ExternalLink';
 
 const Card = styled.div `
   border: 1px solid #d1d5da;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  /* border-top-left-radius: 3px;
+  border-top-right-radius: 3px; */
   width: 80%;
   max-width: 550px;
   margin: 0 auto;
@@ -37,7 +37,7 @@ const Avatar = styled.img `
 `
 
 const Title = styled.h1 `
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 400;
   text-align: left;
 `
@@ -54,6 +54,7 @@ const Text = styled.div `
   padding: 20px;
   font-size: 0.7rem;
   line-height: 1.6em;
+  background-color: #ffffff;
   /* width: inherit;
   height: inherit; */
   text-align: left;

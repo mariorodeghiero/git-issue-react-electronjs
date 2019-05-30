@@ -8,9 +8,10 @@ const Card = styled.div `
     border-bottom: 1px solid #e2e5ec;
     display: grid;
     grid-template-columns: 80% 20%;
+    background-color: #F6F8FA;
     cursor: pointer;
     :hover {
-      background-color: #F6F8FA;
+      opacity: 0.7;
     }
 }
 `
