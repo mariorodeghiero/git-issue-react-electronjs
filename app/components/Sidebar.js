@@ -60,6 +60,15 @@ const Nav = styled.nav `
   }
 }
 `
+const CopyRight = styled.div `
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+
+  span {
+    font-size: 0.7rem;
+  }
+`
 
 class Sidebar extends Component {
   constructor(props) {
@@ -76,6 +85,9 @@ class Sidebar extends Component {
         <hr/>
          <Dropdown icon={Favorite} title={"Library"} library={true} fetchRepo={this.props.fetchRepo} />
          <Dropdown icon={AddInbox} title={"Add Library"} addBox={true} />
+          <CopyRight>
+            <span>©2019 Mario Rodeghiero</span>
+          </CopyRight>
       </Wrapper>
     );
   }
