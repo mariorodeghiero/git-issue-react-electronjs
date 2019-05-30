@@ -84,10 +84,9 @@ i {
 
 .show-issue {
   padding-top: 50px;
+  padding-bottom: 50px;
   overflow: scroll;
-  max-height: 90vh;
   background-color: #EBECF4;
-
 }
 
 .show-issue::-webkit-scrollbar {
